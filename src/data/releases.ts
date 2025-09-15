@@ -1,4 +1,14 @@
-// ...existing code...
+// Import all cover images from assets
+const coverModules = import.meta.glob('../assets/covers/*.{jpg,jpeg,png,webp}', { eager: true })
+const coversMap: Record<string, string> = Object.fromEntries(
+  Object.entries(coverModules).map(([path, mod]) => {
+    const name = path.split('/').pop()!.replace(/\.(jpg|jpeg|png|webp)$/i, '')
+    // @ts-ignore
+    const url = (mod && mod.default) ? mod.default : mod
+    return [name, url]
+  })
+)
+
 export type ReleaseType = 'Single' | 'Album'
 
 export interface ReleaseItem {
@@ -30,8 +40,7 @@ export const releases: ReleaseItem[] = [
     slug: 'beach',
     type: 'Single',
     title: 'Beach',
-    cover:
-      'https://cdn.builder.io/api/v1/image/assets%2Fbb028c0698fe4c3286dbf7c9994f9544%2F36bb684cff5e4046bfc685e8414fe80a?format=webp&width=800',
+    cover: coversMap['beach'],
     order: 1,
     description: 'The first single from Rail Wilbers, released in 2021.', 
     year: 2021,
@@ -45,8 +54,7 @@ export const releases: ReleaseItem[] = [
     slug: 'run-away',
     type: 'Single',
     title: 'Run Away',
-    cover:
-      'https://images.genius.com/469b8e2ba89a96e8b381aec8a2c8b296.1000x1000x1.png',
+    cover: coversMap['run-away'],
     order: 2,
     description: 'The first single from Rail Wilbers, released in 2021.', 
     year: 2024,
@@ -60,8 +68,7 @@ export const releases: ReleaseItem[] = [
     slug: 'kingdom-of-my-heart',
     type: 'Album',
     title: 'Kingdom Of My Heart',
-    cover:
-      'https://cdn.builder.io/api/v1/image/assets%2Fbb028c0698fe4c3286dbf7c9994f9544%2F07310b1c6d9141c7815083b3e23e979c?format=webp&width=800',
+    cover: coversMap['kingdom-of-my-heart'],
     order: 3,
     description: 'The first single from Rail Wilbers, released in 2021.', 
     year: 2024,
@@ -75,8 +82,7 @@ export const releases: ReleaseItem[] = [
     slug: 'bye-boy',
     type: 'Single',
     title: 'Bye Boy',
-    cover:
-      'https://cdn.builder.io/api/v1/image/assets%2Fbb028c0698fe4c3286dbf7c9994f9544%2Fe2e6c87ea3734f11b4a9628ca0bf2d91?format=webp&width=800',
+    cover: coversMap['bye-boy'],
     order: 4,
     description: 'The first single from Rail Wilbers, released in 2021.', 
     year: 2025,
@@ -90,8 +96,7 @@ export const releases: ReleaseItem[] = [
     slug: 'dawn-is-coming',
     type: 'Single',
     title: 'Dawn Is Coming',
-    cover:
-      'https://cdn.builder.io/api/v1/image/assets%2Fbb028c0698fe4c3286dbf7c9994f9544%2F3d7d279a6da74f7c8214a21d5e357f79?format=webp&width=800',
+    cover: coversMap['dawn-is-coming'],
     order: 5,
     description: 'The first single from Rail Wilbers, released in 2021.', 
     year: 2025,
@@ -105,8 +110,7 @@ export const releases: ReleaseItem[] = [
     slug: 'horizons',
     type: 'Album',
     title: 'Horizons',
-    cover:
-      'https://cdn.builder.io/api/v1/image/assets%2Fbb028c0698fe4c3286dbf7c9994f9544%2Fdbe2b5c5c2854b26a3f06f6fa63ceb6c?format=webp&width=800',
+    cover: coversMap['horizons'],
     order: 6,
     description: 'The first single from Rail Wilbers, released in 2021.', 
     year: 2025,
@@ -120,8 +124,7 @@ export const releases: ReleaseItem[] = [
     slug: 'pourquoi',
     type: 'Single',
     title: 'Pourquoi',
-    cover:
-      'https://cdn.builder.io/api/v1/image/assets%2Fbb028c0698fe4c3286dbf7c9994f9544%2Ff17514d30f214aec81f7cf501ea78f6f?format=webp&width=800',
+    cover: coversMap['pourquoi'],
     order: 7,
     description: 'The first single from Rail Wilbers, released in 2021.', 
     year: 2025,

@@ -130,7 +130,7 @@ async function subscribe() {
       </div>
 
       <div class="mx-auto max-w-7xl px-6 text-center">
-        <h1 class="font-display text-7xl md:text-[6.5rem] tracking-tight leading-none">Rail Wilbers</h1>
+        <h1 class="hero-title tracking-[-1.8px] text-[64px] leading-[72px] md:text-[120px] md:leading-[160px]">Rail Wilbers</h1>
       </div>
     </section>
 
@@ -212,7 +212,7 @@ async function subscribe() {
             <svg class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
           </button>
 
-          <div class="flex gap-3 overflow-x-auto py-1 px-1">
+          <div class="flex gap-3 overflow-x-auto py-1 px-1 no-scrollbar">
             <button
               v-for="(v, i) in videoList"
               :key="v.id + '-' + i"
@@ -352,4 +352,5 @@ async function subscribe() {
 .pattern-row:nth-child(odd) { color: #0ea5e9; opacity: .2; }
 .tab { padding: 6px 12px; border-radius: 9999px; border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.03); color: rgba(255,255,255,.85); }
 .tab-active { background: rgba(20,184,166,.2); border-color: rgba(20,184,166,.5); color: white; }
+.hero-title { font-family: 'Krona One', sans-serif; font-weight: 400; }
 </style>

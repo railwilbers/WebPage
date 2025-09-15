@@ -1,9 +1,9 @@
 export const embedVideos: string[] = [
   'https://www.youtube.com/watch?v=KLd_5y_DcQU',
-  'https://www.youtube.com/watch?v=wMtmP9NU6Rk',
   'https://www.youtube.com/watch?v=_-KKHlvnFeE',
-  'https://www.youtube.com/watch?v=8k3y9kBu12Y',
   'https://www.youtube.com/watch?v=Q7MgrARiT1c',
+  'https://www.youtube.com/watch?v=wMtmP9NU6Rk',
+  'https://www.youtube.com/watch?v=8k3y9kBu12Y',
   'https://www.youtube.com/watch?v=c7YAeKY5d10',
   'https://www.youtube.com/watch?v=E1PicCUTMTc',
   'https://www.youtube.com/watch?v=3wXmbVINZLc',

@@ -90,4 +90,171 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(255, 255, 255, 0.10) transparent;
+}
+
+/* hide horizontal scrollbar but keep and restyle vertical scrollbar */
+.no-scrollbar {
+  overflow-x: auto; /* keep horizontal scrolling behavior */
+  overflow-y: auto; /* vertical scrolling visible */
+  -ms-overflow-style: auto; /* IE/Edge: don't hide scrollbars */
+  scrollbar-width: thin; /* Firefox: thin vertical scrollbar */
+  scrollbar-color: rgba(255, 255, 255, 0.10) transparent; /* Firefox thumb / track */
+}
+
+/* WebKit: hide horizontal scrollbar (height) and style vertical scrollbar (width) */
+.no-scrollbar::-webkit-scrollbar {
+  height: 0;      /* hide horizontal bar */
+  width: 10px;    /* vertical scrollbar width */
+}
+.no-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+/* default (light) thumb */
+.no-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  border: 2px solid rgba(0, 0, 0, 0.35);
+  background-clip: padding-box;
+}
+.no-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Dark-mode scrollbar: darker thumb / subtle border so it isn't a bright white line */
+.no-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.55);       /* dark thumb */
+    border-radius: 9999px;
+    border: 2px solid rgba(255, 255, 255, 0.03);  /* faint highlight */
+    background-clip: padding-box;
+  }
+  .no-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.65);
+  }
+
+  /* page scrollbar (html/body) dark variant */
+  html::-webkit-scrollbar-thumb,
+  body::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.55);
+    border: 2px solid rgba(255, 255, 255, 0.03);
+    border-radius: 9999px;
+    background-clip: padding-box;
+  }
+  html::-webkit-scrollbar-thumb:hover,
+  body::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.65);
+  }
+
+  /* ensure Firefox uses a dark thumb in dark mode */
+  html, body, .no-scrollbar {
+    scrollbar-color: rgba(0,0,0,0.55) rgba(255,255,255,0.02);
+  }
+
+/* --- Base scrollbar styling (light mode default) --- */
+html, body {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(255,255,255,0.10) transparent;
+}
+
+/* WebKit: hide horizontal track and style vertical scrollbar (light) */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 10px;
+  height: 0; /* hide horizontal track */
+}
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.08);
+  border-radius: 9999px;
+  border: 2px solid rgba(0,0,0,0.35);
+  background-clip: padding-box;
+}
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255,255,255,0.14);
+}
+
+/* Thumbnails strip: hide horizontal bar, style vertical thumb */
+.no-scrollbar {
+  overflow-x: auto;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.10) transparent;
+}
+.no-scrollbar::-webkit-scrollbar {
+  height: 0;
+  width: 10px;
+}
+.no-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.no-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.08);
+  border-radius: 9999px;
+  border: 2px solid rgba(0,0,0,0.35);
+  background-clip: padding-box;
+}
+.no-scrollbar::-webkit-scrollbar-thumb:hover { background-color: rgba(255,255,255,0.14); }
+
+/* --- Dark mode overrides (placed last so they win) --- */
+@media (prefers-color-scheme: dark) {
+  html, body, .no-scrollbar {
+    scrollbar-color: rgba(0,0,0,0.55) rgba(255,255,255,0.02);
+  }
+
+  html::-webkit-scrollbar-thumb,
+  body::-webkit-scrollbar-thumb,
+  .no-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.55);
+    border: 2px solid rgba(255,255,255,0.03);
+    border-radius: 9999px;
+    background-clip: padding-box;
+  }
+  html::-webkit-scrollbar-thumb:hover,
+  body::-webkit-scrollbar-thumb:hover,
+  .no-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0,0,0,0.65);
+  }
+}
+
+/* final overrides — make vertical scrollbar thin & dark (hide horizontal) */
+html, body {
+  /* Firefox */
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(0,0,0,0.55) transparent !important;
+}
+
+/* WebKit: hide horizontal track and style vertical thumb */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 8px;   /* vertical width */
+  height: 0;    /* hide horizontal track */
+}
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.55) !important;
+  border-radius: 9999px;
+  border: 2px solid rgba(255,255,255,0.03) !important;
+  background-clip: padding-box;
+}
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0,0,0,0.65) !important;
+}
+
+/* keep thumbnail strip consistent */
+.no-scrollbar::-webkit-scrollbar { width: 8px; height: 0; }
+.no-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.55) !important;
+  border: 2px solid rgba(255,255,255,0.03) !important;
+  border-radius: 9999px;
+}
