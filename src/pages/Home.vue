@@ -244,9 +244,9 @@ async function subscribe() {
         <h2 class="font-display text-3xl md:text-4xl tracking-tight">Listen</h2>
       </div>
 
-      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Spotify primary (left) -->
-        <div class="rounded-xl overflow-hidden ring-1 ring-white/10 bg-black">
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-12 gap-6">
+        <!-- Spotify primary (left) — larger: md:col-span-8 (change to 9 for even wider) -->
+        <div class="md:col-span-8 rounded-xl overflow-hidden ring-1 ring-white/10 bg-black">
           <iframe
             title="Spotify — Rail Wilbers"
             src="https://open.spotify.com/embed/artist/563lLvURAz5f8tkwcM6lA5"
@@ -258,12 +258,12 @@ async function subscribe() {
           ></iframe>
         </div>
 
-        <!-- Apple Music (right, artist card / small embed) -->
-        <div class="rounded-xl overflow-hidden ring-1 ring-white/10 bg-black flex items-start">
+        <!-- Apple Music (right) — smaller: md:col-span-4 (change to 3 if Spotify is 9) -->
+        <div class="md:col-span-4 rounded-xl overflow-hidden ring-1 ring-white/10 bg-black flex items-start">
           <iframe
             title="Apple Music — Rail Wilbers"
             src="https://embed.music.apple.com/us/artist/rail-wilbers/1556726596"
-            width="80%"
+            width="100%"
             height="450"
             frameborder="0"
             allow="autoplay; encrypted-media"
