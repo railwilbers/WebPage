@@ -37,10 +37,9 @@ onUnmounted(() => {
 
         <nav class="container mx-auto px-6 hidden md:flex items-center gap-8 text-sm text-white/80">
           <RouterLink :to="{ path: '/', hash: '#releases' }" class="hover:text-white">Releases</RouterLink>
-          <RouterLink :to="{ path: '/', hash: '#listen' }" class="hover:text-white">Listen</RouterLink>
           <RouterLink :to="{ path: '/', hash: '#videos' }" class="hover:text-white">Videos</RouterLink>
+          <RouterLink :to="{ path: '/', hash: '#listen' }" class="hover:text-white">Listen</RouterLink>
           <RouterLink :to="{ path: '/', hash: '#updates' }" class="hover:text-white">Updates</RouterLink>
-          <a :href="artist.linktree" target="_blank" class="hover:text-white">All Links</a>
         </nav>
       </div>
     </header>
@@ -52,6 +51,7 @@ onUnmounted(() => {
         <p class="text-sm text-white/60">© {{ new Date().getFullYear() }} {{ artist.name }}. All rights reserved.</p>
         <div class="flex items-center gap-4 text-sm">
           <RouterLink :to="{ path: '/', hash: '#releases' }" class="hover:text-white/90 text-white/70">Releases</RouterLink>
+          <RouterLink :to="{ path: '/', hash: '#videos' }" class="hover:text-white/90 text-white/70">Videos</RouterLink>
           <RouterLink :to="{ path: '/', hash: '#listen' }" class="hover:text-white/90 text-white/70">Listen</RouterLink>
           <RouterLink :to="{ path: '/', hash: '#updates' }" class="hover:text-white/90 text-white/70">Updates</RouterLink>
         </div>

@@ -42,7 +42,7 @@ export const releases: ReleaseItem[] = [
     title: 'Beach',
     cover: coversMap['beach'],
     order: 1,
-    description: 'The first single from Rail Wilbers, released in 2021.', 
+    description: 'Dreamy and minimalist, “Beach” marked Rail Wilbers’ debut into the electronic/dance scene. With pulsing techno energy and a short runtime, it sets a nostalgic, freedom-chasing tone for his journey.',
     year: 2021,
     spotify: 'https://open.spotify.com/album/0nAsMImykwJO3CPz6YYBLc',
     apple: 'https://music.apple.com/us/album/beach-single/1771659761',
@@ -56,7 +56,7 @@ export const releases: ReleaseItem[] = [
     title: 'Run Away',
     cover: coversMap['run-away'],
     order: 2,
-    description: 'The first single from Rail Wilbers, released in 2021.', 
+    description: 'A vibrant pop single built around urgency and emotional escape, “Run Away” blends heartfelt lyrics with dynamic synth production. It’s both soaring and vulnerable, a step into Wilbers’ evolving pop sensibilities.',
     year: 2024,
     spotify: 'https://open.spotify.com/album/1ID1N1AeFfNIj9LDMLNTXQ',
     apple: 'https://music.apple.com/artist/rail-wilbers/1556726596',
@@ -70,13 +70,13 @@ export const releases: ReleaseItem[] = [
     title: 'Kingdom Of My Heart',
     cover: coversMap['kingdom-of-my-heart'],
     order: 3,
-    description: 'The first single from Rail Wilbers, released in 2021.', 
+    description: 'Rail Wilbers’ debut album, *Kingdom of My Heart*, plays like a cinematic soundtrack — a mix of orchestral textures and narrative-driven instrumentals. From the prologue’s gentle introduction to the climactic “Final Battle” and hopeful “Celebration,” the record paints a journey through conflict, resilience, and redemption. With elements of classical and film-score storytelling, it established his ability to build not just songs but true worlds in sound.',
     year: 2024,
-    spotify: 'https://open.spotify.com/album/1ID1N1AeFfNIj9LDMLNTXQ',
+    spotify: 'https://open.spotify.com/album/1xEXjY4R9MsvnTHoMxaznE',
     apple: 'https://music.apple.com/artist/rail-wilbers/1556726596',
     ytmusic: 'https://music.youtube.com/channel/UCwxcOsUhdveEC8_EEv229qQ',
-    youtube: 'https://www.youtube.com/watch?v=wMtmP9NU6Rk',
-    videos: ['wMtmP9NU6Rk']
+    youtube: 'https://www.youtube.com/watch?v=FiuT9Tm4pX4',
+    videos: ['FiuT9Tm4pX4']
   },
   {
     slug: 'bye-boy',
@@ -84,13 +84,13 @@ export const releases: ReleaseItem[] = [
     title: 'Bye Boy',
     cover: coversMap['bye-boy'],
     order: 4,
-    description: 'The first single from Rail Wilbers, released in 2021.', 
+    description: 'A bold and playful single that fuses rock edge with pop hooks. “Bye Boy” radiates confidence, pairing sharp energy with the exhilaration of moving on.',
     year: 2025,
-    spotify: 'https://open.spotify.com/album/1ID1N1AeFfNIj9LDMLNTXQ',
+    spotify: 'https://open.spotify.com/album/1vV4UyYnEbXnhd5QjYyEt4',
     apple: 'https://music.apple.com/artist/rail-wilbers/1556726596',
     ytmusic: 'https://music.youtube.com/channel/UCwxcOsUhdveEC8_EEv229qQ',
-    youtube: 'https://www.youtube.com/watch?v=wMtmP9NU6Rk',
-    videos: ['wMtmP9NU6Rk']
+    youtube: 'https://www.youtube.com/watch?v=Q7MgrARiT1c',
+    videos: ['Q7MgrARiT1c']
   },
   {
     slug: 'dawn-is-coming',
@@ -98,13 +98,13 @@ export const releases: ReleaseItem[] = [
     title: 'Dawn Is Coming',
     cover: coversMap['dawn-is-coming'],
     order: 5,
-    description: 'The first single from Rail Wilbers, released in 2021.', 
+    description: 'An uplifting electronic/dance track full of light and anticipation. With cinematic intensity, “Dawn Is Coming” captures the moment of transformation when night turns to day.',
     year: 2025,
-    spotify: 'https://open.spotify.com/album/1ID1N1AeFfNIj9LDMLNTXQ',
+    spotify: 'https://open.spotify.com/album/0f94Q9ND44VhZYe8rb9PN3',
     apple: 'https://music.apple.com/artist/rail-wilbers/1556726596',
     ytmusic: 'https://music.youtube.com/channel/UCwxcOsUhdveEC8_EEv229qQ',
-    youtube: 'https://www.youtube.com/watch?v=wMtmP9NU6Rk',
-    videos: ['wMtmP9NU6Rk']
+    youtube: 'https://www.youtube.com/watch?v=_-KKHlvnFeE',
+    videos: ['_-KKHlvnFeE']
   },
   {
     slug: 'horizons',
@@ -112,13 +112,13 @@ export const releases: ReleaseItem[] = [
     title: 'Horizons',
     cover: coversMap['horizons'],
     order: 6,
-    description: 'The first single from Rail Wilbers, released in 2021.', 
+    description: 'With *Horizons*, Rail Wilbers steps fully into a pop/electronic identity, channeling energy into polished anthems and intimate reflections. The album is expansive, with tracks like “Nine Lives” and “Unbreakable” delivering resilience, while “Gone” and “Sands of Time” lean into introspection. Balancing festival-ready hooks with layered emotion, it’s both a bold continuation and a new chapter — pushing his sound toward the future while staying rooted in heartfelt songwriting.',
     year: 2025,
-    spotify: 'https://open.spotify.com/album/1ID1N1AeFfNIj9LDMLNTXQ',
+    spotify: 'https://open.spotify.com/album/79ZlBuJoQ7ItyN8Jv4Qtwb',
     apple: 'https://music.apple.com/artist/rail-wilbers/1556726596',
     ytmusic: 'https://music.youtube.com/channel/UCwxcOsUhdveEC8_EEv229qQ',
-    youtube: 'https://www.youtube.com/watch?v=wMtmP9NU6Rk',
-    videos: ['wMtmP9NU6Rk']
+    youtube: 'https://www.youtube.com/watch?v=c7YAeKY5d10',
+    videos: ['_-KKHlvnFeE', 'Q7MgrARiT1c', 'c7YAeKY5d10', 'E1PicCUTMTc', '3wXmbVINZLc', 'vIbtX70ZO_4', 'EftEi2vRl_M', 'Ze4Mn_S8Ubk', 'H-xq7wyTcQA', '_GkvZ5TeJjc', 'if1XFABL0-Q', 'pLMt9Z2HxDY']
   },
   {
     slug: 'pourquoi',
@@ -126,13 +126,13 @@ export const releases: ReleaseItem[] = [
     title: 'Pourquoi',
     cover: coversMap['pourquoi'],
     order: 7,
-    description: 'The first single from Rail Wilbers, released in 2021.', 
+    description: 'A stylish pop track with French flavor, “Pourquoi” pairs melodic warmth with an air of questioning introspection. Both catchy and thoughtful, it adds an international dimension to Wilbers’ catalog.',
     year: 2025,
-    spotify: 'https://open.spotify.com/album/1ID1N1AeFfNIj9LDMLNTXQ',
+    spotify: 'https://open.spotify.com/album/36TRbARVcm0SnrxQ7vDQgS',
     apple: 'https://music.apple.com/artist/rail-wilbers/1556726596',
     ytmusic: 'https://music.youtube.com/channel/UCwxcOsUhdveEC8_EEv229qQ',
-    youtube: 'https://www.youtube.com/watch?v=wMtmP9NU6Rk',
-    videos: ['wMtmP9NU6Rk']
+    youtube: 'https://www.youtube.com/watch?v=KLd_5y_DcQU',
+    videos: ['KLd_5y_DcQU']
   },
 ]
 

@@ -82,6 +82,7 @@ function playVideo(i: number) {
 }
 
 // Listen / News: subscription state
+const name = ref('')
 const email = ref('')
 const subscribing = ref(false)
 const subscribed = ref(false)
@@ -92,6 +93,10 @@ const subscribeError = ref<string | null>(null)
  */
 async function subscribe() {
   subscribeError.value = null
+  if (!name.value.trim()) {
+    subscribeError.value = 'Please enter your name.'
+    return
+  }
   if (!/^\S+@\S+\.\S+$/.test(email.value)) {
     subscribeError.value = 'Enter a valid email address.'
     return
@@ -101,10 +106,11 @@ async function subscribe() {
     const res = await fetch('/api/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email.value }),
+      body: JSON.stringify({ name: name.value, email: email.value }),
     })
     if (!res.ok) throw new Error('Subscription failed')
     subscribed.value = true
+    name.value = ''
     email.value = ''
   } catch (err: any) {
     subscribeError.value = err?.message ?? 'Subscription failed. Try again later.'
@@ -273,50 +279,55 @@ async function subscribe() {
       </div>
     </section>
 
-    <!-- Updates / Email sign-up (framed) -->
+    <!-- Updates / Email sign-up (redesigned for better UX) -->
     <section id="updates" class="mx-auto max-w-7xl px-6 py-12 md:py-16">
-      <div class="flex items-center justify-between gap-4 mb-6">
-        <h2 class="font-display text-3xl md:text-4xl tracking-tight">Updates</h2>
-      </div>
+      <!-- Single, centered container for a stronger call-to-action -->
+      <div class="mx-auto max-w-3xl text-center rounded-2xl bg-white/5 border border-white/10 p-8 md:p-12">
+        <h2 class="font-display text-3xl md:text-4xl tracking-tight">Stay Updated</h2>
+        <p class="mt-4 max-w-xl mx-auto text-white/70">
+          Sign up for email updates on new releases, videos, and shows.
+        </p>
 
-      <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-        <div class="text-white/70">
-          <p class="mb-4">Sign up to receive email updates about new releases, videos and shows. We’ll only use your email for artist updates. You can unsubscribe anytime.</p>
-        </div>
+        <!-- Form with improved layout and feedback -->
+        <form @submit.prevent="subscribe" class="mt-6">
+          <!-- Success/Error state shown above the form -->
+          <div v-if="subscribed || subscribeError" class="mb-4 text-sm">
+            <p v-if="subscribeError" class="text-rose-400">{{ subscribeError }}</p>
+            <p v-else-if="subscribed" class="text-emerald-400">Thanks, you're on the list!</p>
+          </div>
 
-        <!-- framed form container with slightly greyer background/border -->
-        <div class="rounded-xl bg-white/6 border border-white/8 p-6">
-          <form @submit.prevent="subscribe" class="flex flex-col gap-3">
-            <label class="sr-only" for="email">Email</label>
-            <input
-              id="email"
-              v-model="email"
-              type="email"
-              placeholder="Your email address"
-              class="rounded-md px-4 py-3 bg-black/60 border border-white/10 text-white placeholder:text-white/50 focus:outline-none"
-              required
-            />
-
-            <div class="flex items-center gap-3">
+          <div v-if="!subscribed">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-3">
+              <label for="name" class="sr-only">Your name</label>
+              <input
+                id="name"
+                v-model="name"
+                type="text"
+                placeholder="Your name"
+                class="form-input w-full md:w-auto flex-1"
+                required
+              />
+              <label for="email" class="sr-only">Your email</label>
+              <input
+                id="email"
+                v-model="email"
+                type="email"
+                placeholder="Your email address"
+                class="form-input w-full md:w-auto flex-1"
+                required
+              />
               <button
                 type="submit"
-                :disabled="subscribing || subscribed"
-                class="btn-primary inline-flex items-center justify-center"
+                :disabled="subscribing"
+                class="btn-primary w-full md:w-auto"
               >
                 <span v-if="subscribing">Signing up…</span>
-                <span v-else-if="subscribed">Subscribed</span>
-                <span v-else>Sign up</span>
+                <span v-else>Sign Up</span>
               </button>
-
-              <p class="text-sm text-white/60">
-                <span v-if="subscribeError" class="text-rose-400">{{ subscribeError }}</span>
-                <span v-else-if="subscribed" class="text-emerald-300">Thanks — you’re on the list.</span>
-              </p>
             </div>
-
-            <p class="text-xs text-white/50 mt-1">We respect your privacy. View our privacy policy for details.</p>
-          </form>
-        </div>
+            <p class="text-xs text-white/50 mt-3">We respect your privacy. Unsubscribe at any time.</p>
+          </div>
+        </form>
       </div>
     </section>
 
@@ -348,9 +359,26 @@ async function subscribe() {
 
 /* keep existing pattern styles */
 .pattern { position: absolute; inset: 0; opacity: 0.25; }
-.pattern-row { display: flex; gap: 2rem; font-weight: 800; font-size: clamp(2.25rem, 6vw, 4rem); letter-spacing: .05em; color: #14b8a6; text-transform: uppercase; white-space: nowrap; line-height: 1.3; opacity: .35; }
+.pattern-row { display: flex; gap: 2rem; font-weight: 800; font-size: clamp(2.25rem, 6vw, 4rem); letter-spacing: .05em; color: #000000; text-transform: uppercase; white-space: nowrap; line-height: 1.3; opacity: .35; }
 .pattern-row:nth-child(odd) { color: #0ea5e9; opacity: .2; }
-.tab { padding: 6px 12px; border-radius: 9999px; border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.03); color: rgba(255,255,255,.85); }
-.tab-active { background: rgba(20,184,166,.2); border-color: rgba(20,184,166,.5); color: white; }
+
+/* -- Redesigned tab buttons for better UX -- */
+.tab {
+  @apply rounded-full border border-transparent bg-white/5 px-4 py-2 text-sm font-medium text-white/60 transition-colors duration-200 ease-in-out hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/30;
+}
+.tab-active {
+  @apply border-white/30 bg-white/10 text-white;
+}
+
 .hero-title { font-family: 'Krona One', sans-serif; font-weight: 400; }
+
+/* Added for new form inputs */
+.form-input {
+  @apply rounded-md px-4 py-3 bg-black/60 border border-white/10 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-teal-500/50;
+}
+
+main h2 {
+  @apply font-semibold;
+}
 </style>
+

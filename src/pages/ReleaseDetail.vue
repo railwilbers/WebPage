@@ -78,7 +78,8 @@ const platforms = computed(() => ([
       <RouterLink :to="{ path: '/', hash: '#releases' }" class="hover:text-white">← Back to Releases</RouterLink>
     </nav>
 
-    <div class="mt-6 grid gap-8 md:grid-cols-2">
+    <!-- Release Header: Cover + Title + Year/Type + Description -->
+    <div class="mt-6 grid gap-12 md:grid-cols-2">
       <!-- Cover on the left -->
       <div class="relative aspect-square overflow-hidden rounded-2xl ring-1 ring-white/10">
         <img :src="release.cover" :alt="release.title" class="absolute inset-0 h-full w-full object-cover" />
@@ -104,7 +105,7 @@ const platforms = computed(() => ([
           </span>
         </div>
 
-        <p class="mt-4 text-white/70 leading-relaxed text-sm md:text-base">
+        <p class="mt-6 text-white/80 leading-relaxed text-base md:text-lg">
           {{ release.description || 'Add a short release description here. Keep it to a couple of lines for clarity.' }}
         </p>
       </div>
