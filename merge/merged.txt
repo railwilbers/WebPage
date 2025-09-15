@@ -1,0 +1,780 @@
+// File: d:\Music\WebPage\src\App.vue
+<script setup>
+import NavBar from './components/NavBar.vue'
+import SiteFooter from './components/SiteFooter.vue'
+</script>
+
+<template>
+  <NavBar />
+  <main>
+    <RouterView />
+  </main>
+  <SiteFooter />
+</template>
+
+// File: d:\Music\WebPage\src\assets\base.css
+/* Reset + base */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body, #app { height: 100%; }
+:root{
+  --bg:#0b0e13;
+  --panel:#0f141c;
+  --soft:#151b25;
+  --text:#e7e9ee;
+  --muted:#95a1b2;
+  --accent:#e91e63;
+  --accent2:#00e5ff;
+  --border: #263040;
+  --card:#0f141c;
+  --radius:16px;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+html { scroll-behavior: smooth; }
+body{
+  background: radial-gradient(1200px 800px at 80% -10%, rgba(233,30,99,.15), transparent 60%),
+              radial-gradient(1200px 800px at 0% 110%, rgba(0,229,255,.08), transparent 60%),
+              var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.6;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display:block; }
+.container{ max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* Components */
+.section { padding: 80px 0; }
+.section h2 { font-size: 32px; margin-bottom: 24px; letter-spacing: .3px; }
+.section p.lead { color: var(--muted); max-width: 780px; }
+
+.card{
+  background: linear-gradient(180deg, var(--card), rgba(15,20,28,.9));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.btn{
+  display:inline-flex; align-items:center; gap:10px;
+  padding: 12px 18px; border-radius: 999px; border:1px solid transparent;
+  font-weight: 600; letter-spacing:.2px; cursor:pointer; transition:.2s;
+}
+.btn-primary{
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #041018;
+}
+.btn-outline{
+  border-color: var(--border);
+  background: transparent;
+  color: var(--text);
+}
+.btn:hover{ transform: translateY(-1px); opacity:.95; }
+
+.badge{
+  display:inline-block; padding:4px 10px; border-radius:999px;
+  background:#1c2432; color:#b5c2d6; font-size:12px; letter-spacing:.4px;
+  border: 1px solid var(--border);
+}
+.chip{
+  display:inline-block; padding:6px 10px; border-radius:999px;
+  background:#111824; color:#cbd4e0; font-size:12px; border:1px solid var(--border);
+}
+
+/* Grid helpers */
+.grid{ display:grid; gap: 22px; }
+.grid-2{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-3{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 900px){
+  .grid-3{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px){
+  .grid-2, .grid-3{ grid-template-columns: 1fr; }
+}
+
+/* Nav */
+.nav{
+  position: sticky; top: 0; z-index: 50;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background: rgba(11,14,19,.6);
+  border-bottom: 1px solid rgba(38,48,64,.6);
+}
+.nav-inner{ display:flex; align-items:center; justify-content:space-between; height:64px; }
+.brand{ display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.6px; }
+
+.nav-links{ display:flex; gap:18px; }
+.nav-links a{ color: var(--muted); font-weight:600; padding:8px 10px; border-radius:10px; }
+.nav-links a:hover{ color: var(--text); background:#121927; }
+
+.mobile-toggle{ display:none; }
+@media (max-width: 860px){
+  .nav-links{ display:none; }
+  .mobile-toggle{ display:block; }
+  .mobile-menu{
+    display:flex; flex-direction:column; gap:8px; padding:12px;
+    border-top:1px solid var(--border); background:#0d121a;
+  }
+  .mobile-menu a{ padding:10px 12px; border-radius:10px; color:var(--muted); }
+  .mobile-menu a:hover{ background:#121927; color:var(--text); }
+}
+
+/* Hero */
+.hero{
+  padding: 120px 0 80px;
+  background-size: cover; background-position: center;
+  position: relative; isolation: isolate;
+}
+.hero::after{
+  content:""; position:absolute; inset:0; z-index:0;
+  background: linear-gradient(180deg, rgba(11,14,19,.2), rgba(11,14,19,.95));
+}
+.hero .content{ position: relative; z-index: 1; }
+.hero h1{ font-size: clamp(42px, 7vw, 64px); line-height: 1.1; margin-bottom: 12px; }
+.hero .tagline{ color: var(--muted); font-size: 18px; }
+.hero .cta{ margin-top: 24px; display:flex; gap:12px; flex-wrap:wrap; }
+.hero .social{ margin-top: 18px; display:flex; gap:12px; flex-wrap:wrap; }
+.social a{ color: #b7c2d3; }
+.social a:hover{ color: var(--text); }
+
+/* Responsive embeds */
+.embed{
+  position: relative; width: 100%; padding-top: 56.25%; overflow: hidden; border-radius: 12px; border:1px solid var(--border);
+}
+.embed iframe{
+  position: absolute; inset:0; width: 100%; height: 100%;
+}
+
+/* Footer */
+footer{ border-top:1px solid var(--border); padding: 28px 0; color: var(--muted); }
+
+/* Forms */
+input, textarea, select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #0f141c;
+  color: var(--text);
+}
+input::placeholder, textarea::placeholder { color: #8b97a8; }
+label { 
+    -webkit-user-select: none;
+    user-select: none; }
+.form { display:flex; flex-wrap:wrap; gap:10px; }
+
+// File: d:\Music\WebPage\src\assets\styles\tokens.css
+:root{
+  --bg: #0b0f1a;
+  --fg: #e6e9ee;
+  --muted: #a3adc2;
+  --card: #111623;
+  --line: #2a3240;
+  --accent: #6ee7ff;
+  --accent2: #a78bfa;
+  --radius: 12px;
+}
+*{box-sizing:border-box}
+html,body,#app{height:100%}
+body{
+  margin:0; color:var(--fg); background:var(--bg);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{color:inherit; text-decoration:none}
+.section{padding:72px 20px}
+.container{max-width:1100px; margin:0 auto}
+h1,h2{letter-spacing:-.02em; margin:0}
+h2{font-size:clamp(28px,4vw,40px); margin-bottom:18px}
+.btn{border:0; border-radius:999px; padding:.75rem 1.1rem; cursor:pointer}
+.btn.primary{background:#e2e8f0; color:#0b0f1a}
+.btn.ghost{border:1px solid var(--line); color:var(--fg); background:transparent}
+.card{
+  background:rgba(13,17,23,.6); 
+  border:1px solid var(--line);
+  border-radius:var(--radius); 
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+img{display:block; width:100%; height:auto; border-radius:8px}
+
+// File: d:\Music\WebPage\src\components\ContactSection.vue
+<script setup>
+const props = defineProps({
+  artist: { type: Object, required: true },
+  social: { type: Array, default: () => [] }
+})
+</script>
+
+<template>
+  <section class="section container">
+    <h2 id="contact">Contact</h2>
+    <p class="lead">
+      For bookings, press, or collabs, reach out at
+      <a :href="`mailto:${artist.email}`" style="color:var(--accent2); font-weight:600;">
+        {{ artist.email }}
+      </a>.
+    </p>
+
+    <div class="card" style="margin-top:18px; padding:18px;">
+      <div style="display:flex; flex-wrap:wrap; gap:10px;">
+        <a v-for="s in social" :key="s.name" :href="s.url" target="_blank" rel="noopener" class="btn btn-outline">
+          {{ s.name }}
+        </a>
+      </div>
+    </div>
+  </section>
+</template>
+
+// File: d:\Music\WebPage\src\components\GallerySection.vue
+<script setup>
+import { ref } from 'vue'
+const props = defineProps({
+  images: { type: Array, default: () => [] }
+})
+const open = ref(false)
+const current = ref(null)
+const openModal = (src) => { current.value = src; open.value = true }
+const close = () => { open.value = false; current.value = null }
+</script>
+
+<template>
+  <section class="section container">
+    <h2 id="gallery">Gallery</h2>
+    <p class="lead">Moments on and off stage.</p>
+
+    <div class="grid grid-3" style="margin-top:18px;">
+      <div v-for="img in images" :key="img" class="card" style="cursor: zoom-in; overflow:hidden;">
+        <img :src="img" alt="Gallery" style="aspect-ratio: 4/3; object-fit: cover;" @click="openModal(img)">
+      </div>
+    </div>
+
+    <!-- Simple lightbox -->
+    <div v-if="open" @click="close"
+         style="position:fixed; inset:0; background:rgba(0,0,0,.75); display:flex; align-items:center; justify-content:center; z-index:100;">
+      <img :src="current" alt="Full" style="max-width:92vw; max-height:88vh; border-radius:12px; border:1px solid var(--border); box-shadow: var(--shadow);">
+    </div>
+  </section>
+</template>
+
+// File: d:\Music\WebPage\src\components\HeroSection.vue
+<script setup>
+import { ref, computed } from 'vue'
+import { artist as artistData } from '../data/content'
+
+// pointer‑reactive gradient
+const pos = ref({ x: 50, y: 50 })
+const onMove = (e) => {
+  const b = e.currentTarget.getBoundingClientRect()
+  pos.value = { x: ((e.clientX - b.left) / b.width) * 100, y: ((e.clientY - b.top) / b.height) * 100 }
+}
+const bgStyle = computed(() => ({ '--x': `${pos.value.x}%`, '--y': `${pos.value.y}%` }))
+
+const name = artistData?.name || 'Rail Wilbers'
+const tagline = artistData?.tagline || 'alt‑pop producer & multi‑instrumentalist'
+</script>
+
+<template>
+  <section class="hero" @pointermove="onMove">
+    <div class="glow" :style="bgStyle" />
+    <div class="grain" />
+    <div class="inner container">
+      <h1>{{ name }}</h1>
+      <p>{{ tagline }}</p>
+      <div class="ctas">
+        <RouterLink class="btn primary" to="/#music">Listen</RouterLink>
+        <RouterLink class="btn ghost" to="/#videos">Watch</RouterLink>
+      </div>
+    </div>
+  </section>
+</template>
+
+<style scoped>
+.hero{
+  position:relative; min-height:78vh; display:grid; place-items:center;
+  background:#0b0f1a; overflow:clip;
+}
+.glow{
+  position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(60% 60% at var(--x,50%) var(--y,50%), rgba(110,231,255,.25), transparent 60%),
+    radial-gradient(40% 40% at calc(100% - var(--x,50%)) calc(100% - var(--y,50%)), rgba(167,139,250,.18), transparent 60%);
+  filter: blur(22px) saturate(115%);
+}
+.grain{ position:absolute; inset:0; mix-blend-mode:overlay; opacity:.15; background-image:url('/noise.png') }
+.inner{ text-align:center; padding:0 20px }
+h1{ font-size:clamp(44px, 9vw, 96px); letter-spacing:-.02em; margin:0 0 10px }
+p{ opacity:.85; margin:0 0 16px }
+.ctas{ display:flex; gap:12px; justify-content:center }
+</style>
+
+// File: d:\Music\WebPage\src\components\MusicSection.vue
+<script setup>
+const props = defineProps({
+  releases: { type: Array, default: () => [] },
+  spotifyEmbed: { type: String, default: '' }
+})
+</script>
+
+<template>
+  <section class="section container">
+    <h2 id="music">Latest Music</h2>
+    <p class="lead">New releases and projects by Rail Wilbers. Stream on your favorite platform.</p>
+
+    <!-- Spotify embed -->
+    <div v-if="spotifyEmbed" class="card" style="margin-top:18px; overflow:hidden;">
+      <iframe
+        :src="spotifyEmbed"
+        width="100%" height="352" frameborder="0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"></iframe>
+    </div>
+
+    <div class="grid grid-3" style="margin-top: 18px;">
+      <article v-for="rel in releases" :key="rel.title" class="card">
+        <img :src="rel.cover" :alt="rel.title" style="aspect-ratio: 1/1; object-fit: cover;">
+        <div style="padding:16px 16px 18px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+            <h3 style="font-size:18px;">{{ rel.title }}</h3>
+            <span class="chip">{{ rel.year }}</span>
+          </div>
+          <p style="color:var(--muted); margin-top:6px;">{{ rel.description }}</p>
+
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;">
+            <a v-for="l in rel.links" :key="l.platform" :href="l.url" target="_blank" rel="noopener" class="chip">
+              ▶ {{ l.platform }}
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+</template>
+
+// File: d:\Music\WebPage\src\components\NavBar.vue
+<script setup>
+import { ref } from 'vue'
+import { artist as artistData } from '../data/content'
+
+const props = defineProps({ name: { type: String, default: artistData.name }})
+const open = ref(false)
+const close = () => { open.value = false }
+</script>
+
+<template>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <span style="font-size:18px; background:linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent;">●</span>
+        <RouterLink to="/#home" style="font-weight:800;">{{ name }}</RouterLink>
+      </div>
+
+      <div class="nav-links">
+        <RouterLink to="/#music">Music</RouterLink>
+        <RouterLink to="/#videos">Videos</RouterLink>
+        <RouterLink to="/#gallery">Gallery</RouterLink>
+        <RouterLink to="/#subscribe">Subscribe</RouterLink>
+        <RouterLink to="/#contact">Contact</RouterLink>
+      </div>
+
+      <button class="btn btn-outline mobile-toggle" @click="open = !open">Menu</button>
+    </div>
+
+    <div v-if="open" class="mobile-menu container">
+      <RouterLink to="/#music" @click="close">Music</RouterLink>
+      <RouterLink to="/#videos" @click="close">Videos</RouterLink>
+      <RouterLink to="/#gallery" @click="close">Gallery</RouterLink>
+      <RouterLink to="/#subscribe" @click="close">Subscribe</RouterLink>
+      <RouterLink to="/#contact" @click="close">Contact</RouterLink>
+    </div>
+  </nav>
+</template>
+
+// File: d:\Music\WebPage\src\components\NewsletterSection.vue
+<script setup>
+import { ref } from 'vue'
+const props = defineProps({
+  newsletter: {
+    type: Object,
+    default: () => ({ provider: 'buttondown', username: 'railwilbers', title: 'Get updates', description: '' })
+  }
+})
+const submitted = ref(false)
+
+function openPopup() {
+  const u = newsletter.username || 'yourusername'
+  window.open(`https://buttondown.email/${u}`, 'popupwindow', 'scrollbars=yes,width=600,height=600')
+  submitted.value = true
+}
+</script>
+
+<template>
+  <section class="section container">
+    <h2 id="newsletter">{{ newsletter.title || 'Newsletter' }}</h2>
+    <p class="lead">{{ newsletter.description || 'Join the list for new music, shows, and drops. No spam.' }}</p>
+
+    <div class="card" style="margin-top:18px; padding:18px;">
+      <form
+        v-if="newsletter.provider === 'buttondown'"
+        :action="`https://buttondown.email/api/emails/embed-subscribe/${newsletter.username}`"
+        method="post"
+        target="popupwindow"
+        @submit="openPopup">
+        <input type="hidden" name="embed" value="1" />
+        <div class="form">
+          <div class="field" style="flex: 1 1 320px;">
+            <label for="bd-email" style="display:block; font-size:13px; color:var(--muted); margin-bottom:6px;">Email address</label>
+            <input id="bd-email" name="email" type="email" required placeholder="you@example.com" />
+          </div>
+          <div class="actions" style="align-items:flex-end;">
+            <button class="btn btn-primary" type="submit">Subscribe</button>
+          </div>
+        </div>
+      </form>
+
+      <div v-else style="color:var(--muted);">
+        Configure newsletter.provider in content.js (e.g., 'buttondown').
+      </div>
+
+      <div v-if="submitted" style="margin-top:10px; color:var(--muted);">
+        Thanks! Check your inbox to confirm your subscription.
+      </div>
+    </div>
+  </section>
+</template>
+
+// File: d:\Music\WebPage\src\components\SiteFooter.vue
+<script setup>
+const props = defineProps({ name: { type: String, default: 'Artist' }})
+const year = new Date().getFullYear()
+</script>
+
+<template>
+  <footer>
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+      <div>© {{ year }} {{ name }}. All rights reserved.</div>
+      <div style="color:#6f7c91;">Built with Vue • Hosted on Render</div>
+    </div>
+  </footer>
+</template>
+
+// File: d:\Music\WebPage\src\components\SiteHeader.vue
+<template>
+  <header class="hdr">
+    <a class="logo" href="/">Rail Wilbers</a>
+    <nav>
+      <a href="#music">Music</a>
+      <a href="#videos">Videos</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#subscribe">Subscribe</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+</template>
+
+<style scoped>
+.hdr{
+  position:sticky; top:0; z-index:50;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 20px; background:rgba(11,15,26,.6); backdrop-filter: blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.logo{font-weight:700; letter-spacing:.02em}
+nav{display:flex; gap:18px; align-items:center}
+a{opacity:.85} a:hover{opacity:1}
+</style>
+
+// File: d:\Music\WebPage\src\components\VideoSection.vue
+<script setup>
+const props = defineProps({
+  videos: { type: Array, default: () => [] }
+})
+</script>
+
+<template>
+  <section class="section container">
+    <h2 id="videos">Videos</h2>
+    <p class="lead">Watch official videos, sessions, and live performances.</p>
+
+    <div class="grid grid-2" style="margin-top:18px;">
+      <div v-for="v in videos" :key="v.youtubeId" class="card" style="padding:12px;">
+        <div class="embed">
+          <iframe
+            :src="`https://www.youtube-nocookie.com/embed/${v.youtubeId}`"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+        <div style="padding:12px 8px 4px; color: var(--muted);">{{ v.title }}</div>
+      </div>
+    </div>
+  </section>
+</template>
+
+// File: d:\Music\WebPage\src\data\content.js
+export const artist = {
+  name: 'Rail Wilbers',
+  tagline: 'Alt-pop producer & multi‑instrumentalist',
+  email: 'rail@example.com',
+  heroImage: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1600&q=80'
+}
+
+export const social = [
+  { name: 'Spotify', url: '#' },
+  { name: 'Apple Music', url: '#' },
+  { name: 'YouTube', url: '#' },
+  { name: 'Instagram', url: '#' },
+  { name: 'TikTok', url: '#' },
+  { name: 'Bandcamp', url: '#' }
+]
+
+export const spotify = {
+  // Replace with your artist/album/playlist embed URL:
+  // Grab it from the "Copy Embed" option in Spotify.
+  // Examples:
+  // 'https://open.spotify.com/embed/artist/ARTIST_ID'
+  // 'https://open.spotify.com/embed/album/ALBUM_ID'
+  // 'https://open.spotify.com/embed/playlist/PLAYLIST_ID'
+  embedUrl: 'https://open.spotify.com/embed/playlist/37i9dQZF1DX0XUsuxWHRQd'
+}
+
+export const newsletter = {
+  provider: 'buttondown',
+  username: 'railwilbers', // create this at https://buttondown.email/
+  title: 'Get updates',
+  description: 'Join the list for new music, shows, and drops. No spam.'
+}
+
+export const releases = [
+  {
+    title: 'Neon Lines',
+    year: 2025,
+    cover: 'https://images.unsplash.com/photo-1523755231516-e43fd2e8dca5?auto=format&fit=crop&w=800&q=60',
+    description: 'A midnight drive through synth landscapes and fractured drums.',
+    links: [
+      { platform: 'Spotify', url: '#' },
+      { platform: 'Apple', url: '#' },
+      { platform: 'YouTube', url: '#' },
+      { platform: 'Bandcamp', url: '#' }
+    ]
+  },
+  {
+    title: 'Glass Rivers EP',
+    year: 2024,
+    cover: 'https://images.unsplash.com/photo-1529768167801-9173d94c2f5b?auto=format&fit=crop&w=800&q=60',
+    description: 'Shimmering textures, gritty bass, and late-night vocals.',
+    links: [
+      { platform: 'Spotify', url: '#' },
+      { platform: 'Apple', url: '#' },
+      { platform: 'YouTube', url: '#' }
+    ]
+  },
+  {
+    title: 'City Echoes',
+    year: 2023,
+    cover: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=60',
+    description: 'Debut mini‑album exploring the pulse of urban isolation.',
+    links: [
+      { platform: 'Spotify', url: '#' },
+      { platform: 'Apple', url: '#' }
+    ]
+  }
+]
+
+export const videos = [
+  { title: 'Neon Lines (Official Video)', youtubeId: 'tAGnKpE4NCI' },
+  { title: 'Live at Warehouse 17', youtubeId: 'hTWKbfoikeg' }
+]
+
+export const tourDates = [
+  { date: '2025-10-05', venue: 'Echo Room', city: 'Los Angeles, CA', tickets: '#', status: 'On sale' },
+  { date: '2025-11-12', venue: 'Brooklyn Loft', city: 'Brooklyn, NY', tickets: '#', status: 'On sale' },
+  { date: '2025-12-01', venue: 'The Vic', city: 'Chicago, IL', tickets: '#', status: 'Sold out' }
+]
+
+export const gallery = [
+  'https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1200&q=60',
+  'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=60',
+  'https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1200&q=60',
+  'https://images.unsplash.com/photo-1506157786151-1a1b1a?auto=format&fit=crop&w=1200&q=60',
+  'https://images.unsplash.com/photo-1509339022327-1e1e25360a43?auto=format&fit=crop&w=1200&q=60',
+  'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=60'
+]
+
+export const press = {
+  oneLiner: 'Cinematic alt‑pop with neon‑noir textures and heavy low end.',
+  bioShort: 'Rail Wilbers is an alt‑pop producer and multi‑instrumentalist blending widescreen synths, intimate vocals, and club‑leaning drums.',
+  bioLong:
+`Rail Wilbers crafts songs that live between late‑night drive and 3AM dance‑floor.
+Pulling from indie, electronic, and modern pop, Rail’s productions pair warm analog synths with punchy,
+experimental percussion and story‑driven toplines. Recent projects include collaborations with vocalists
+across LA and Berlin, plus a new EP slated for 2025.`,
+  location: 'Los Angeles, CA',
+  genre: 'Electronic / Alt‑Pop',
+  riyl: ['James Blake', 'Sylvan Esso', 'Fred again..'],
+  photos: [
+    { url: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=80', caption: 'Live — LA' },
+    { url: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=1600&q=80', caption: 'Studio' },
+    { url: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1600&q=80', caption: 'Press 01' }
+  ],
+  logos: ['/press/logo.svg'],
+  downloads: {
+    zip: '/press/rail-wilbers-epk.zip', // add this file later
+    pdf: '/press/rail-wilbers-epk.pdf', // optional
+    techRider: '/press/tech-rider.pdf', // optional
+    stagePlot: '/press/stage-plot.pdf', // optional
+    logoPack: '/press/logo-pack.zip' // optional
+  },
+  contact: {
+    management: 'Arcadia Mgmt — Jess Ono',
+    pressEmail: 'press@example.com',
+    bookingEmail: 'booking@example.com'
+  },
+  quotes: [
+    { quote: 'Brooding and beautiful — late‑night pop for film scenes that don’t exist yet.', source: 'Night Pulse', link: '#' },
+    { quote: 'A widescreen electronic palette with unforgettable hooks.', source: 'CityBeat', link: '#' }
+  ]
+}
+
+// File: d:\Music\WebPage\src\main.js
+import { createApp } from 'vue'
+import './style.css'
+import App from './App.vue'
+import './assets/base.css'
+import './assets/styles/tokens.css'
+import router from './router'
+
+const app = createApp(App)
+app.use(router)              // <-- register router
+app.mount('#app')
+
+// File: d:\Music\WebPage\src\router\index.js
+import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '../views/HomeView.vue'
+import PressKitView from '../views/PressKitView.vue'
+
+import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '../views/HomeView.vue'
+
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [
+    { path: '/', name: 'home', component: HomeView },
+    { path: '/:pathMatch(.*)*', redirect: '/' } // fallback
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    if (to.hash) {
+      return { el: to.hash, behavior: 'smooth', top: 70 }
+    }
+    return savedPosition || { top: 0 }
+  }
+})
+export default router
+
+// File: d:\Music\WebPage\src\style.css
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.card {
+  padding: 2em;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+
+// File: d:\Music\WebPage\src\views\HomeView.vue
+<script setup>
+import HeroSection from '../components/HeroSection.vue'
+import MusicSection from '../components/MusicSection.vue'
+import VideoSection from '../components/VideoSection.vue'
+import TourSection from '../components/TourSection.vue'
+import GallerySection from '../components/GallerySection.vue'
+import NewsletterSection from '../components/NewsletterSection.vue'
+import ContactSection from '../components/ContactSection.vue'
+
+import { artist, social, releases, videos, tourDates, gallery, spotify, newsletter } from '../data/content'
+</script>
+
+<template>
+  <HeroSection :artist="artist" :social="social" />
+  <MusicSection id="music" :releases="releases" :spotify-embed="spotify.embedUrl" />
+  <VideoSection id="videos" :videos="videos" />
+  <TourSection id="tour" :tourDates="tourDates" />
+  <GallerySection id="gallery" :images="gallery" />
+
+  <NewsletterSection id="newsletter" :newsletter="newsletter" />
+
+  <ContactSection id="contact" :artist="artist" :social="social" />
+</template>
+
